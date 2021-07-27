@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { FormControl, FormControlLabel, Checkbox, Input, InputLabel, Paper, Typography, MenuItem, Select, Avatar, Button } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -27,15 +27,12 @@ const words = {
 }
 
 
-class Form extends Component {
-  static contextType = LanguageContext;
-
-  render() {
-    const {classes} = this.props;
-    const {language, changeLanguage} = this.context;
-    const {email, signIn, password, remember} = words[language];
-    return (
-      <div className={classes.main}>
+function Form(props) {
+  const {language, changeLanguage} = useContext(LanguageContext)
+  const {classes} = props;
+  const {email, signIn, password, remember} = words[language];
+  return(
+     <div className={classes.main}>
         <Paper elevation={7} className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlined />
@@ -62,7 +59,7 @@ class Form extends Component {
           </form>
         </Paper>
       </div>
-    )
-  }
+  )
 }
+
 export default withStyles(styles)(Form);
