@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
+import Form from './Form';
 import Navbar from './Navbar';
 
 class App extends Component {
   render() {
     return (
-      <Navbar />
+      <div>
+        <Navbar />
+        <Form />
+      </div>
+
+      
     );
   };
 };
