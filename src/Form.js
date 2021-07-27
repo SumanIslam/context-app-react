@@ -40,7 +40,7 @@ class Form extends Component {
           <Avatar className={classes.avatar}>
             <LockOutlined />
           </Avatar>
-          <Typography variant="h5">Sign in</Typography>
+          <Typography variant="h5">{signIn}</Typography>
           <Select value={language} onChange={changeLanguage}>
             <MenuItem value="english">English</MenuItem>
             <MenuItem value="french">French</MenuItem>

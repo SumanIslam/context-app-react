@@ -9,18 +9,36 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import React, { Component } from 'react';
 import Styles from './styles/Navbar.styles';
 import { ThemeContext } from './contexts/theme.contexts';
+import { WithLanguageContext } from './contexts/language.context';
+
+const content = {
+  english: {
+    search: 'Search',
+    flag: '🇺🇸',
+  },
+  french: {
+    search: 'Chercher',
+    flag: '🇫🇷'
+  },
+  spanish: {
+    search: 'Buscar',
+    flag: '🇪🇸'
+  }
+}
 
 class Navbar extends Component {
   static contextType = ThemeContext;
   render() {
-    const {isDarkMode, toggleTheme} = this.context;
+    const {isDarkMode, toggleTheme,} = this.context;
     const { classes } = this.props;
+    const { language } = this.props.languageContext;
+    const {search, flag} = content[language]
     return (
       <div className={classes.root}>
         <AppBar position="static" color={isDarkMode ? 'default' : 'primary'}>
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit">
-              <span>🇧🇩</span>
+              <span>{flag}</span>
             </IconButton>
             <Typography className={classes.title} variant="h6">
               Light
@@ -32,7 +50,7 @@ class Navbar extends Component {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder={`${search}...`}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -47,4 +65,4 @@ class Navbar extends Component {
 }
 
 
-export default withStyles(Styles, { withTheme: true })(Navbar);
+export default WithLanguageContext(withStyles(Styles, { withTheme: true })(Navbar));
